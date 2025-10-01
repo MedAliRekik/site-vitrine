@@ -3,161 +3,609 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ali Rekik — Ingénieur Full‑Stack (Java • Angular • Flutter)</title>
-  <meta name="description" content="Ingénieur Full‑Stack confirmé (Java, Spring Boot, Angular, Flutter). Je conçois des applications web & mobiles performantes, sécurisées et scalables. Basé à Lille, ouvert aux projets France & remote." />
-  <link rel="canonical" href="https://www.votredomaine.tld/" />
-  <meta name="robots" content="index,follow" />
+  
+  <!--
+    =============================================
+    Ali Rekik — Site vitrine (version 2025-10-01)
+    Corrections majeures :
+    - Alignement expériences & projets avec le CV
+    - Suppression de la section "Services" + liens
+    - SEO (title/description/canonical/OG/Twitter + JSON-LD)
+    - Accessibilité (skip link, aria-labels), UX (fermeture menu mobile)
+    - Liens harmonisés (GitHub, CV)
+    =============================================
+  -->
 
-  <!-- Open Graph / Twitter -->
+  <title>Ali Rekik — Ingénieur Full‑Stack Java • Angular • Flutter (Lille)</title>
+  <meta name="description" content="Ingénieur Full‑Stack 5 ans — Java/Spring Boot, Angular, Flutter. Batch, sécurité OAuth2/JWT, CI/CD Docker. Disponible Lille/Hauts-de-France." />
+  <link rel="canonical" href="https://medalirekik.github.io/site-vitrine/" />
+
+  <!-- Open Graph / Twitter Cards -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ali Rekik — Ingénieur Full‑Stack" />
-  <meta property="og:description" content="Java, Spring Boot, Angular, Flutter, CI/CD, sécurité. Projets: OnlyU, Oney Bank, Rehau, Capgemini, Coreso, Piexo." />
-  <meta property="og:url" content="https://www.votredomaine.tld/" />
-  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:title" content="Ali Rekik — Ingénieur Full‑Stack Java • Angular • Flutter (Lille)" />
+  <meta property="og:description" content="Java/Spring Boot, Angular, Flutter. Batch, OAuth2/JWT, CI/CD Docker. Disponible Lille/Hauts-de-France." />
+  <meta property="og:url" content="https://medalirekik.github.io/site-vitrine/" />
+  <meta property="og:image" content="/og-image.jpg" /> <!-- TODO: ajouter un visuel 1200x630 -->
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" />
-
-  <!-- Fonts & Tailwind -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          fontFamily: { inter: ['Inter','system-ui','Avenir','Helvetica','Arial','sans-serif'] },
-          colors: { brand: { 50:'#eef2ff', 600:'#4f46e5', 700:'#4338ca' } }
+          fontFamily: { 
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'gradient': 'gradient 8s ease infinite',
+            'slide-up': 'slideUp 0.5s ease-out',
+            'fade-in': 'fadeIn 0.8s ease-out',
+            'bounce-slow': 'bounce 3s infinite'
+          }
         }
       }
     }
   </script>
-  <style> html,body{font-family:Inter,system-ui,Arial,sans-serif} </style>
+  
+  <!-- Styles utilitaires + animations -->
+  <style>
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+    @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-size: 400% 400%; animation: gradient 8s ease infinite; }
+    .glass-effect { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
+    .hover-lift { transition: all 0.3s ease; }
+    .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .scroll-indicator { animation: bounce 2s infinite; }
+    .parallax-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.03; background-image: radial-gradient(circle at 20% 50%, #667eea 0%, transparent 50%), radial-gradient(circle at 80% 80%, #764ba2 0%, transparent 50%), radial-gradient(circle at 40% 20%, #f093fb 0%, transparent 50%); }
+  </style>
+
+  <!-- Données structurées Person -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Ali Rekik",
+    "jobTitle":"Ingénieur Full-Stack",
+    "email":"mailto:medali.rekik.ing@gmail.com",
+    "telephone":"+33781174514",
+    "url":"https://medalirekik.github.io/site-vitrine/",
+    "sameAs":[
+      "https://www.linkedin.com/in/mohamed-ali-rekik",
+      "https://github.com/MedAliRekik"
+    ],
+    "address":{"@type":"PostalAddress","addressLocality":"Lille","addressCountry":"FR"}
+  }
+  </script>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+  <!-- Fond décoratif -->
+  <div class="parallax-bg" aria-hidden="true"></div>
+
+  <!-- Lien d'évitement accessibilité -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-black p-2 rounded">Aller au contenu</a>
+  
   <!-- Header -->
-  <header class="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-gray-200 dark:bg-gray-900/70 dark:border-gray-800">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="#top" class="font-extrabold tracking-tight text-xl">Ali<span class="text-brand-600">Rekik</span></a>
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-        <a href="#about" class="hover:text-brand-600">À propos</a>
-        <a href="#projects" class="hover:text-brand-600">Projets</a>
-        <a href="#skills" class="hover:text-brand-600">Compétences</a>
-        <a href="#contact" class="hover:text-brand-600">Contact</a>
-        <a href="/ali_rekik.pdf" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand-600 text-white hover:bg-brand-700">CV</a>
+  <header class="fixed top-0 z-50 w-full glass-effect transition-all duration-300" id="header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center">
+          <a href="#home" class="flex items-center space-x-2 group" aria-label="Aller à l'accueil">
+            <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-white font-bold text-xl">A</span>
+            </div>
+            <span class="font-bold text-xl">Ali <span class="gradient-text">Rekik</span></span>
+          </a>
+        </div>
+        
+        <!-- NAV DESKTOP (services retiré) -->
+        <nav class="hidden md:flex items-center space-x-8" aria-label="Navigation principale">
+          <a href="#about" class="nav-link relative font-medium hover:text-purple-600 transition-colors"><span>À propos</span></a>
+          <a href="#experience" class="nav-link relative font-medium hover:text-purple-600 transition-colors"><span>Expérience</span></a>
+          <a href="#projects" class="nav-link relative font-medium hover:text-purple-600 transition-colors"><span>Projets</span></a>
+          <a href="#contact" class="px-5 py-2.5 gradient-bg text-white rounded-full hover:scale-105 transition-transform font-medium">Contact</a>
+        </nav>
+        
+        <!-- Burger mobile -->
+        <button class="md:hidden p-2" aria-label="Ouvrir le menu" aria-controls="mobileMenu" aria-expanded="false" onclick="toggleMobileMenu()"><i class="fas fa-bars text-2xl"></i></button>
+      </div>
+    </div>
+    
+    <!-- NAV MOBILE (services retiré) -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 border-t">
+      <nav class="px-4 py-6 space-y-4" aria-label="Navigation mobile">
+        <a href="#about" class="block py-2 font-medium">À propos</a>
+        <a href="#experience" class="block py-2 font-medium">Expérience</a>
+        <a href="#projects" class="block py-2 font-medium">Projets</a>
+        <a href="#contact" class="block py-2 font-medium gradient-text">Contact</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
-  <section id="top" class="relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Ingénieur Full‑Stack<br><span class="text-brand-600">Java • Angular • Flutter</span></h1>
-        <p class="mt-4 text-lg text-gray-700">Je conçois des applications web & mobiles <strong>performantes</strong>, <strong>sécurisées</strong> et <strong>scalables</strong>. Expériences: banque, énergie, IoT, e‑commerce, mobile.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#contact" class="px-5 py-3 rounded-xl bg-brand-600 text-white hover:bg-brand-700">Me contacter</a>
-          <a href="#projects" class="px-5 py-3 rounded-xl border border-gray-300 hover:bg-white">Voir mes projets</a>
+  <section id="home" class="min-h-screen flex items-center relative pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8 animate-fade-in">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full text-purple-700 text-sm font-medium">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            Disponible pour missions / CDI (Lille & remote)
+          </div>
+          
+          <h1 class="text-5xl md:text-6xl font-bold leading-tight">Ingénieur <span class="block gradient-text mt-2">Full-Stack</span></h1>
+          
+          <p class="text-xl text-gray-600 leading-relaxed">Expert en architectures <strong>scalables</strong> et <strong>sécurisées</strong>. Spécialiste Java/Spring Boot, Angular, Flutter avec 5+ ans d'expérience en environnements critiques (banque, énergie, IoT, e‑commerce).</p>
+          
+          <div class="flex flex-wrap gap-4">
+  <a href="#contact" class="px-8 py-4 gradient-bg text-white rounded-full hover:scale-105 transition-transform font-semibold shadow-lg">
+    <i class="fas fa-envelope mr-2" aria-hidden="true"></i> Me contacter
+  </a>
+  <a href="#projects" class="px-8 py-4 bg-white rounded-full hover:scale-105 transition-transform font-semibold shadow-lg border border-gray-200">
+    <i class="fas fa-folder-open mr-2" aria-hidden="true"></i> Portfolio
+  </a>
+
+  <!-- Bouton VOIR (ouvre un nouvel onglet, sans 'download' pour laisser le viewer mobile faire son boulot) -->
+  <a id="cvViewBtn" href="CV-Ali-REKIK.pdf" target="_blank" rel="noopener"
+     class="px-8 py-4 bg-gray-900 text-white rounded-full hover:scale-105 transition-transform font-semibold shadow-lg">
+    <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i> Voir le CV
+  </a>
+
+  <!-- Bouton TÉLÉCHARGER explicite -->
+  <a id="cvDownloadBtn" href="CV-Ali-REKIK.pdf" download
+     class="px-8 py-4 bg-gray-800 text-white rounded-full hover:scale-105 transition-transform font-semibold shadow-lg">
+    <i class="fas fa-download mr-2" aria-hidden="true"></i> Télécharger
+  </a>
+</div>
+          
+          <div class="flex items-center gap-6 pt-4">
+            <a aria-label="LinkedIn" href="https://linkedin.com/in/mohamed-ali-rekik" class="text-gray-600 hover:text-purple-600 transition-colors"><i class="fab fa-linkedin text-2xl" aria-hidden="true"></i></a>
+            <a aria-label="GitHub" href="https://github.com/MedAliRekik" class="text-gray-600 hover:text-purple-600 transition-colors"><i class="fab fa-github text-2xl" aria-hidden="true"></i></a>
+            <a aria-label="Email" href="mailto:medali.rekik.ing@gmail.com" class="text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-envelope text-2xl" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        
+        <!-- Carte code décorative -->
+        <div class="relative hidden lg:block" aria-hidden="true">
+          <div class="relative animate-float">
+            <div class="w-96 h-96 gradient-bg rounded-full opacity-20 blur-3xl absolute -top-10 -right-10"></div>
+            <div class="relative bg-white rounded-2xl shadow-2xl p-8 hover-lift">
+              <div class="space-y-4 font-mono text-sm">
+                <div class="flex items-center gap-2"><span class="text-purple-600">const</span><span class="text-blue-600">developer</span><span>=</span><span>{</span></div>
+                <div class="pl-4 space-y-2">
+                  <div><span class="text-green-600">name:</span> <span class="text-orange-500">'Ali Rekik'</span>,</div>
+                  <div><span class="text-green-600">role:</span> <span class="text-orange-500">'Full-Stack Engineer'</span>,</div>
+                  <div><span class="text-green-600">location:</span> <span class="text-orange-500">'Lille, France'</span>,</div>
+                  <div><span class="text-green-600">skills:</span> [<span class="text-orange-500">'Java','Spring Boot','Angular','Flutter','Docker','CI/CD'</span>],</div>
+                  <div><span class="text-green-600">experience:</span> <span class="text-orange-500">'5+ years'</span></div>
+                </div>
+                <div>};</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator" aria-hidden="true"><i class="fas fa-chevron-down text-2xl text-gray-400"></i></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <main id="main">
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">À propos de moi</h2>
+        <div class="w-24 h-1 gradient-bg mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Ingénieur passionné avec une expertise en développement d'applications d'entreprise, je transforme des idées complexes en solutions élégantes. Mon approche combine rigueur technique et vision produit pour créer des systèmes qui évoluent avec vos besoins.</p>
+          
+          <!-- 4 piliers (inchangé) -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 hover-lift">
+              <i class="fas fa-rocket text-3xl text-purple-600 mb-4" aria-hidden="true"></i>
+              <h3 class="font-bold text-lg mb-2">Innovation Continue</h3>
+              <p class="text-gray-600">Veille active et meilleures pratiques du marché.</p>
+            </div>
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 hover-lift">
+              <i class="fas fa-shield-alt text-3xl text-blue-600 mb-4" aria-hidden="true"></i>
+              <h3 class="font-bold text-lg mb-2">Sécurité First</h3>
+              <p class="text-gray-600">OAuth2, JWT, principes OWASP, secrets management.</p>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 hover-lift">
+              <i class="fas fa-users text-3xl text-green-600 mb-4" aria-hidden="true"></i>
+              <h3 class="font-bold text-lg mb-2">Collaboration Agile</h3>
+              <p class="text-gray-600">Scrum/Kanban, ateliers, démos, feedbacks continus.</p>
+            </div>
+            <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-6 hover-lift">
+              <i class="fas fa-chart-line text-3xl text-orange-600 mb-4" aria-hidden="true"></i>
+              <h3 class="font-bold text-lg mb-2">Performance</h3>
+              <p class="text-gray-600">Optimisation, monitoring, scalabilité, observabilité.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="space-y-6">
+          <!-- Stats (peuvent être remplacées par KPI réels) -->
+          <div class="bg-gray-50 rounded-xl p-6">
+            <h3 class="font-bold text-lg mb-4">Statistiques</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between mb-2"><span class="text-gray-600">Projets livrés</span><span class="font-bold">15+</span></div>
+                <div class="w-full bg-gray-200 rounded-full h-2"><div class="gradient-bg h-2 rounded-full" style="width: 90%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2"><span class="text-gray-600">Pipelines CI/CD</span><span class="font-bold">8+</span></div>
+                <div class="w-full bg-gray-200 rounded-full h-2"><div class="gradient-bg h-2 rounded-full" style="width: 85%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2"><span class="text-gray-600">Satisfaction client</span><span class="font-bold">98%</span></div>
+                <div class="w-full bg-gray-200 rounded-full h-2"><div class="gradient-bg h-2 rounded-full" style="width: 98%"></div></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-xl p-6">
+            <h3 class="font-bold text-lg mb-4">Localisation</h3>
+            <p class="mb-2"><i class="fas fa-map-marker-alt mr-2" aria-hidden="true"></i> Lille, France</p>
+            <p class="text-sm opacity-90">Disponible en remote & sur site</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold">À propos</h2>
-    <p class="mt-4 text-lg leading-relaxed text-gray-700">Développeur passionné avec 5+ ans d’expérience, j’ai livré des produits en production (web, mobile, batch, ERP). J’applique les principes <strong>SOLID</strong> et des <strong>design patterns</strong>, je conçois des <strong>microservices sécurisés</strong> (OAuth2/JWT), et j’automatise la livraison via <strong>CI/CD + Docker</strong>.</p>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold mb-8">Projets clés</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <article class="bg-white rounded-2xl shadow-sm border hover:shadow-md transition p-6">
-        <h3 class="text-lg font-bold text-brand-600">OnlyU — App mobile Flutter</h3>
-        <p class="mt-2 text-sm text-gray-700">App Flutter publiée (App Store & Play Store) pour le partage sécurisé de secrets. Architecture MVC, backend .NET, CI/CD stores.</p>
-      </article>
-      <article class="bg-white rounded-2xl shadow-sm border hover:shadow-md transition p-6">
-        <h3 class="text-lg font-bold text-brand-600">Oney Bank — Batch Data</h3>
-        <p class="mt-2 text-sm text-gray-700">Traitement massif via Spring Batch (extraction API REST, transformation règles métier, génération fichiers). Optimisation chunks & mémoire.</p>
-      </article>
-      <article class="bg-white rounded-2xl shadow-sm border hover:shadow-md transition p-6">
-        <h3 class="text-lg font-bold text-brand-600">Capgemini — App cartographie</h3>
-        <p class="mt-2 text-sm text-gray-700">Cartographie interactive & gamification. Backend Spring Boot + Security, Front Angular, CI/CD GitLab & Jenkins.</p>
-      </article>
-      <article class="bg-white rounded-2xl shadow-sm border hover:shadow-md transition p-6">
-        <h3 class="text-lg font-bold text-brand-600">Rehau — IoT Monitoring</h3>
-        <p class="mt-2 text-sm text-gray-700">Suivi temps réel d’objets connectés (MQTT, MongoDB), sécurité OAuth2, reconnexion automatique & messages persistants.</p>
-      </article>
-      <article class="bg-white rounded-2xl shadow-sm border hover:shadow-md transition p-6">
-        <h3 class="text-lg font-bold text-brand-600">Coreso — Coordination énergie</h3>
-        <p class="mt-2 text-sm text-gray-700">Modules back‑end Java, microservices REST, documentation technique, chiffrage, code review, Agile pour la sûreté réseau.</p>
-      </article>
-      <article class="bg-white rounded-2xl shadow-sm border hover:shadow-md transition p-6">
-        <h3 class="text-lg font-bold text-brand-600">Piexo.fr — ERP & e‑commerce</h3>
-        <p class="mt-2 text-sm text-gray-700">Plateforme complète de gestion commerciale (stock, devis, factures, commandes, livraisons, paiements). Full‑stack Java/Angular, CI/CD, Docker, PostgreSQL. Développée pour un réseau de fournisseurs & clients en Île‑de‑France.</p>
-      </article>
+  <!-- Experience (timeline alignée au CV) -->
+  <section id="experience" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">Expérience Professionnelle</h2>
+      <div class="w-24 h-1 gradient-bg mx-auto rounded-full"></div>
     </div>
-  </section>
 
-  <!-- Skills -->
-  <section id="skills" class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold">Compétences</h2>
-    <div class="mt-8 grid md:grid-cols-3 gap-8">
-      <div>
-        <h3 class="font-semibold text-brand-600 mb-3">Langages & Frameworks</h3>
-        <ul class="space-y-2 text-gray-700 list-disc list-inside">
-          <li>Java 8 → 21, Spring Boot, Spring Batch, Spring Security</li>
-          <li>Angular (12 → 17), TypeScript, HTML, CSS</li>
-          <li>Flutter, Dart, Firebase</li>
-        </ul>
+    <div class="relative">
+      <!-- Ligne centrale visible seulement >= md -->
+      <div class="hidden md:block absolute left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-600 to-pink-600"></div>
+
+      <div class="space-y-8 md:space-y-12">
+        <!-- 1. Goweb — OnlyU -->
+        <div class="md:flex md:items-center md:justify-between">
+          <!-- Carte gauche en desktop, full width en mobile -->
+          <div class="w-full md:w-5/12 md:text-right md:pr-8">
+            <article class="bg-white rounded-xl p-5 md:p-6 shadow-lg hover-lift">
+              <h3 class="font-bold text-xl gradient-text">Goweb — OnlyU</h3>
+              <p class="text-gray-600 mb-1">Ingénieur Full-Stack & Mobile</p>
+              <p class="text-sm text-gray-500 mb-3">Avril 2025 – Présent · Lille</p>
+              <p class="text-gray-700 leading-relaxed hyphens-auto">
+                Flutter (MVC, Riverpod), backend modulaire REST/JSON, OAuth2/JWT, CI/CD (GitLab + Docker), déploiement App Store & Play Store.
+                <br><span class="text-gray-600 text-sm">Impact : −50% temps de déploiement, industrialisation des livraisons mobiles.</span>
+              </p>
+            </article>
+          </div>
+          <!-- Pastille centrale (desktop only) -->
+          <div class="hidden md:flex w-2/12 justify-center">
+            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold">1</div>
+          </div>
+          <div class="w-full md:w-5/12 md:block hidden"></div>
+        </div>
+
+        <!-- 2. Softgen — Oney Bank -->
+        <div class="md:flex md:items-center md:justify-between">
+          <div class="w-full md:block hidden"></div>
+          <div class="hidden md:flex w-2/12 justify-center">
+            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold">2</div>
+          </div>
+          <div class="w-full md:w-5/12 md:pl-8">
+            <article class="bg-white rounded-xl p-5 md:p-6 shadow-lg hover-lift">
+              <h3 class="font-bold text-xl gradient-text">Softgen — Client : Oney Bank</h3>
+              <p class="text-gray-600 mb-1">Ingénieur Java JEE</p>
+              <p class="text-sm text-gray-500 mb-3">Août 2024 – Mars 2025 · Lille</p>
+              <p class="text-gray-700 leading-relaxed hyphens-auto">
+                Architecture batch & data pipeline. Spring Batch (extraction REST, transformations métiers, chargement décisionnel), optimisation mémoire/chunk, Factory Pattern.
+                <br><span class="text-gray-600 text-sm">Impact : +40% vitesse traitements, fiabilisation des flux décisionnels.</span>
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <!-- 3. Capgemini — GAMIFICATION -->
+        <div class="md:flex md:items-center md:justify-between">
+          <div class="w-full md:w-5/12 md:text-right md:pr-8">
+            <article class="bg-white rounded-xl p-5 md:p-6 shadow-lg hover-lift">
+              <h3 class="font-bold text-xl gradient-text">Capgemini — Projet GAMIFICATION</h3>
+              <p class="text-gray-600 mb-1">Ingénieur Full-Stack Java/Angular</p>
+              <p class="text-sm text-gray-500 mb-3">Juil. 2023 – Juil. 2024 · Paris</p>
+              <p class="text-gray-700 leading-relaxed hyphens-auto">
+                Spring Boot/Security, Angular 16 (cartes interactives temps réel), pipelines GitLab/Jenkins + Docker, SonarQube, tests JUnit/Mockito.
+                <br><span class="text-gray-600 text-sm">Impact : −30% anomalies prod, UX améliorée.</span>
+              </p>
+            </article>
+          </div>
+          <div class="hidden md:flex w-2/12 justify-center">
+            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold">3</div>
+          </div>
+          <div class="w-full md:w-5/12 md:block hidden"></div>
+        </div>
+
+        <!-- 4. All Soft Multimedia — REHAU -->
+        <div class="md:flex md:items-center md:justify-between">
+          <div class="w-full md:block hidden"></div>
+          <div class="hidden md:flex w-2/12 justify-center">
+            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold">4</div>
+          </div>
+          <div class="w-full md:w-5/12 md:pl-8">
+            <article class="bg-white rounded-xl p-5 md:p-6 shadow-lg hover-lift">
+              <h3 class="font-bold text-xl gradient-text">All Soft Multimedia — REHAU NEA Smart 2.0 (IoT)</h3>
+              <p class="text-gray-600 mb-1">Ingénieur Full-Stack</p>
+              <p class="text-sm text-gray-500 mb-3">2021 – 2023</p>
+              <p class="text-gray-700 leading-relaxed hyphens-auto">
+                Microservices (Spring Boot), AngularJS/Cordova, MQTT temps réel (reconnexion, messages persistants), OAuth2/Cidaas, monitoring.
+                <br><span class="text-gray-600 text-sm">Impact : 10k+ utilisateurs, stabilité & sécurité renforcées.</span>
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <!-- 5. Freedom Of Dev Services — CORESO -->
+        <div class="md:flex md:items-center md:justify-between">
+          <div class="w-full md:w-5/12 md:text-right md:pr-8">
+            <article class="bg-white rounded-xl p-5 md:p-6 shadow-lg hover-lift">
+              <h3 class="font-bold text-xl gradient-text">Freedom Of Dev Services — CORESO</h3>
+              <p class="text-gray-600 mb-1">Ingénieur Back-End Java/EE</p>
+              <p class="text-sm text-gray-500 mb-3">2020 – 2021</p>
+              <p class="text-gray-700 leading-relaxed hyphens-auto">
+                Microservices Java 8/Spring Boot (coordination énergie), specs & doc techniques, chiffrage, code review, Scrum.
+              </p>
+            </article>
+          </div>
+          <div class="hidden md:flex w-2/12 justify-center">
+            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold">5</div>
+          </div>
+          <div class="w-full md:w-5/12 md:block hidden"></div>
+        </div>
       </div>
-      <div>
-        <h3 class="font-semibold text-brand-600 mb-3">Architecture & DevOps</h3>
-        <ul class="space-y-2 text-gray-700 list-disc list-inside">
-          <li>API REST, OAuth2 / JWT, Swagger, Keycloak</li>
-          <li>Docker, GitLab CI/CD, Jenkins</li>
-          <li>SOLID, Design Patterns, UML, TDD</li>
-        </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- Projects (orientés impact + dates) -->
+  <section id="projects" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Projets Remarquables</h2>
+        <div class="w-24 h-1 gradient-bg mx-auto rounded-full"></div>
       </div>
-      <div>
-        <h3 class="font-semibold text-brand-600 mb-3">Données & Outils</h3>
-        <ul class="space-y-2 text-gray-700 list-disc list-inside">
-          <li>PostgreSQL, MongoDB, MySQL</li>
-          <li>SonarQube, Postman, Maven, Git</li>
-          <li>Publication App Store / Play Store</li>
-        </ul>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Piexo -->
+        <article class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border">
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold">Piexo.fr — ERP & e‑commerce</h3>
+              <span class="text-xs px-2 py-1 rounded-full bg-purple-100 text-purple-700">en cours</span>
+            </div>
+            <p class="mt-3 text-gray-600 text-sm">Plateforme pièces auto (IDF) : catalogue, stock, devis, factures, commandes, paiements, rôles & back‑office. CI/CD, Docker, PostgreSQL. <span class="text-gray-600">MVP 2025.</span></p>
+            <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 bg-gray-100 rounded">Java 17</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">Spring Boot</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">Angular</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">PostgreSQL</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">Docker</li>
+            </ul>
+            <div class="mt-4"><a href="https://www.piexo.fr" target="_blank" rel="noopener" class="text-purple-700 hover:underline">Voir le site →</a></div>
+          </div>
+        </article>
+        
+        <!-- OnlyU -->
+        <article class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border">
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold">OnlyU — App Flutter</h3>
+              <span class="text-xs px-2 py-1 rounded-full bg-emerald-100 text-emerald-700">2025 – présent</span>
+            </div>
+            <p class="mt-3 text-gray-600 text-sm">Partage sécurisé de secrets. Flutter (MVC, Riverpod), backend REST .NET, OAuth2/JWT, CI/CD GitLab + Docker, Stores iOS/Android. <span class="text-gray-600">Impact : −50% temps de déploiement.</span></p>
+            <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 bg-gray-100 rounded">Flutter</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">.NET</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">OAuth2/JWT</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">CI/CD</li>
+            </ul>
+          </div>
+        </article>
+        
+        <!-- Oney -->
+        <article class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border">
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold">Oney Bank — Batch Data</h3>
+              <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-700">2024 – 2025</span>
+            </div>
+            <p class="mt-3 text-gray-600 text-sm">ETL via Spring Batch (REST → décisionnel), tuning mémoire/chunk, Factory Pattern, tests JUnit/Mockito. <span class="text-gray-600">Impact : +40% vitesse traitements.</span></p>
+            <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 bg-gray-100 rounded">Java 17</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">Spring Batch</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">REST</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">CI/CD</li>
+            </ul>
+          </div>
+        </article>
+        
+        <!-- Capgemini -->
+        <article class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border">
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold">Capgemini — App cartographie</h3>
+              <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-700">2023 – 2024</span>
+            </div>
+            <p class="mt-3 text-gray-600 text-sm">Navigation & gamification. Spring Boot + Security, Angular 16, SonarQube, Docker, GitLab CI/CD & Jenkins. <span class="text-gray-600">Impact : −30% anomalies prod.</span></p>
+            <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 bg-gray-100 rounded">Angular 16</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">Spring Security</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">Docker</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">SonarQube</li>
+            </ul>
+          </div>
+        </article>
+        
+        <!-- REHAU -->
+        <article class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border">
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold">REHAU — IoT Monitoring</h3>
+              <span class="text-xs px-2 py-1 rounded-full bg-rose-100 text-rose-700">2021 – 2023</span>
+            </div>
+            <p class="mt-3 text-gray-600 text-sm">Temps réel (MQTT, MongoDB), OAuth2/Cidaas, reconnexion auto & messages persistants. Monitoring & logs. <span class="text-gray-600">Impact : stabilité + sécurité renforcées.</span></p>
+            <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 bg-gray-100 rounded">MQTT</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">MongoDB</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">AngularJS</li>
+            </ul>
+          </div>
+        </article>
+        
+        <!-- CORESO -->
+        <article class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border">
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold">CORESO — Coordination énergie</h3>
+              <span class="text-xs px-2 py-1 rounded-full bg-rose-100 text-rose-700">2020 – 2021</span>
+            </div>
+            <p class="mt-3 text-gray-600 text-sm">Microservices REST Java, doc technique, chiffrage, code review. Collaboration Agile pour sûreté réseau européen.</p>
+            <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 bg-gray-100 rounded">Java</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">REST</li>
+              <li class="px-2 py-1 bg-gray-100 rounded">PostgreSQL</li>
+            </ul>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="max-w-6xl mx-auto px-4 py-16">
-    <div class="bg-white rounded-2xl border shadow-sm p-8">
-      <h2 class="text-3xl font-bold">Contact</h2>
-      <p class="mt-2 text-gray-700">Je suis ouvert aux nouvelles opportunités ou collaborations.</p>
-      <div class="mt-6 flex flex-wrap items-center gap-3">
-        <a href="mailto:medali.rekik.ing@gmail.com" class="px-5 py-3 rounded-xl bg-brand-600 text-white hover:bg-brand-700">📧 Email</a>
-        <a href="tel:+33781174514" class="px-5 py-3 rounded-xl bg-green-600 text-white hover:bg-green-700">📞 +33 7 81 17 45 14</a>
-        <a href="https://www.linkedin.com/in/mohamed-ali-rekik/" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl bg-gray-900 text-white hover:bg-black">🔗 LinkedIn</a>
+  <section id="contact" class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-xl border p-8">
+        <h2 class="text-3xl font-bold mb-2">Me contacter</h2>
+        <p class="text-gray-600 mb-6">Disponible pour missions, CDI ou partenariats. Réponse sous 24h.</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <a href="mailto:medali.rekik.ing@gmail.com" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-900 text-white hover:opacity-90" aria-label="Envoyer un email"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a>
+          <a href="tel:+33781174514" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-600 text-white hover:opacity-90" aria-label="Appeler"><i class="fas fa-phone" aria-hidden="true"></i> Appel</a>
+          <a href="https://wa.me/33781174514?text=Bonjour%20Ali%2C%20je%20souhaite%20échanger%20sur%20un%20projet." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-green-500 text-white hover:opacity-90 md:col-span-2" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="border-t bg-white dark:bg-gray-900 dark:border-gray-800">
-    <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-gray-600 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p>© <span id="year"></span> Ali Rekik. Tous droits réservés.</p>
-      <nav class="flex items-center gap-4">
-        <a class="hover:underline" href="#top">Haut de page</a>
-        <a class="hover:underline" href="/ali_rekik.pdf">CV</a>
-        <a class="hover:underline" href="/sitemap.xml">Sitemap</a>
-      </nav>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/33781174514?text=Bonjour%20Ali%2C%20je%20souhaite%20échanger%20sur%20un%20projet." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-green-500 text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform" aria-label="WhatsApp flottant"><i class="fab fa-whatsapp text-2xl" aria-hidden="true"></i></a>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="font-bold text-white">Ali Rekik</h4>
+        <p class="mt-2 text-sm">Ingénieur Full‑Stack — Java • Angular • Flutter</p>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white">Navigation</h5>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="#about" class="hover:underline">À propos</a></li>
+          <li><a href="#experience" class="hover:underline">Expérience</a></li>
+          <li><a href="#projects" class="hover:underline">Projets</a></li>
+          <li><a href="#contact" class="hover:underline">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white">Contact</h5>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="mailto:medali.rekik.ing@gmail.com" class="hover:underline">medali.rekik.ing@gmail.com</a></li>
+          <li><a href="tel:+33781174514" class="hover:underline">+33 7 81 17 45 14</a></li>
+          <li><a href="https://wa.me/33781174514" target="_blank" class="hover:underline">WhatsApp</a></li>
+          <li><a href="https://linkedin.com/in/mohamed-ali-rekik" target="_blank" class="hover:underline">LinkedIn</a></li>
+          <li><a href="https://github.com/MedAliRekik" target="_blank" class="hover:underline">GitHub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white">Légal</h5>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="/mentions-legales.html" class="hover:underline">Mentions légales</a></li>
+          <li><a href="/politique-confidentialite.html" class="hover:underline">Confidentialité</a></li>
+          <li><a href="/sitemap.xml" class="hover:underline">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-sm flex flex-col md:flex-row items-center justify-between gap-4">
+        <p>© <span id="year"></span> Ali Rekik. Tous droits réservés.</p>
+        <div class="flex items-center gap-4">
+          <a aria-label="Email" href="mailto:medali.rekik.ing@gmail.com" class="hover:text-white"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          <a aria-label="WhatsApp" href="https://wa.me/33781174514" target="_blank" class="hover:text-white"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          <a aria-label="LinkedIn" href="https://linkedin.com/in/mohamed-ali-rekik" target="_blank" class="hover:text-white"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+          <a aria-label="GitHub" href="https://github.com/MedAliRekik" target="_blank" class="hover:text-white"><i class="fab fa-github" aria-hidden="true"></i></a>
+        </div>
+      </div>
     </div>
   </footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+
+  <!-- Scripts -->
+  <script>
+    // Header shrink + mobile menu + current year
+    const headerEl = document.getElementById('header');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const yearEl = document.getElementById('year');
+
+    function toggleMobileMenu(){ 
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      // ARIA state
+      const btn = document.querySelector('button[aria-controls="mobileMenu"]');
+      if(btn){ btn.setAttribute('aria-expanded', String(!isHidden)); }
+    }
+
+    window.addEventListener('scroll', () => {
+      headerEl.classList.toggle('backdrop-blur', window.scrollY > 10);
+      headerEl.classList.toggle('border-b', window.scrollY > 10);
+    });
+
+    // Ferme le menu mobile après clic sur un lien (meilleure UX)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#mobileMenu a').forEach(a => {
+        a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+      if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
+    });
+    (function () {
+    // Dossier courant de la page (sans "index.html")
+    var basePath = window.location.pathname.replace(/index\.html?$/i, '');
+    // Construit un chemin relatif correct
+    var cvPath = basePath.replace(/\/+$/, '') + '/CV-Ali-REKIK.pdf';
+
+    // Normalise les doubles slashes (sauf après https:)
+    cvPath = cvPath.replace(/([^:]\/)\/+/g, '$1');
+
+    // Applique aux deux boutons
+    var viewBtn = document.getElementById('cvViewBtn');
+    var dlBtn = document.getElementById('cvDownloadBtn');
+    if (viewBtn) viewBtn.setAttribute('href', cvPath);
+    if (dlBtn) dlBtn.setAttribute('href', cvPath);
+  })();
+  </script>
+  </main>
 </body>
 </html>
-
